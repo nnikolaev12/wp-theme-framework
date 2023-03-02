@@ -1,0 +1,12 @@
+{
+  "name": "nyxit/theme-framework",
+  "require-dev": {
+    "symfony/var-dumper": "^5.4"
+  },
+  "authors": [
+    {
+      "name": "Nikolay Nikolaev",
+      "email": "me@nikolaynikolaev.com"
+    }
+  ]
+}
