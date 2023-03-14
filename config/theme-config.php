@@ -72,8 +72,8 @@ return array(
      * (Example: style.css or https://example.com/style.css)
      */
     "styles" => [
-        "nyx-core" => "core.css",
-        "nyx-style" => "style.css",
+        "nyx-core" => "core.min.css",
+        "nyx-style" => "style.min.css",
     ],
     /**
      * Theme JS files
@@ -93,7 +93,8 @@ return array(
      * "build-in" => "jquery"
      */
     "scripts" => [
-        "nyx-js" => "main.js",
+        "build-in" => "jquery",
+        "nyx-js" => "main.min.js",
     ],
     /**
      * Theme registered navigations
