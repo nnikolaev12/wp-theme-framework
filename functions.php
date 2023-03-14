@@ -18,13 +18,12 @@ try {
     // autoload theme
     require_once "inc/core/autoload.php";
     $nyxit_theme = new Theme;
-
-    // load redux framework for theme options
-    require_once "inc/vendor/redux.php";
     
     /**
      * Start of custom functionality
      */
+
+    require_once "inc/classes/class-book.php";
     
     /**
      * End of custom functionality

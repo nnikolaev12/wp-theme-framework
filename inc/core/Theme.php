@@ -31,7 +31,6 @@ class Theme
         add_action( 'init', [ $this, "register_navs" ] );
         add_action( 'widgets_init', [ $this, "register_sidebars" ] );
         $this->clean();
-        $this->load_custom_posts();
     }
 
     /**
@@ -102,18 +101,6 @@ class Theme
 
                 wp_enqueue_script($handle, $src, array(), null, $in_footer);
             }
-        }
-    }
-
-    /**
-     * Load the custom posts
-     */
-    public function load_custom_posts()
-    {
-        $custom_posts = [];
-
-        foreach ($this->config['custom_posts'] as $id => $options) {
-            $custom_posts[] = new CustomPosts( $id, $options );
         }
     }
 

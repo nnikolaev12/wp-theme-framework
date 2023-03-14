@@ -116,31 +116,4 @@ return array(
         ],
         */
     ],
-    /**
-     * Custom post types
-     * 
-     * The registered custom post types registered for the theme.
-     */
-    "custom_posts" => [
-        /*
-        'book' => [
-            'labels' => [
-                'singular' => 'Book',
-                'plural' => 'Books',
-            ],
-            'args' => [
-                'public' => true,
-			    'capability_type' => 'post',
-			    'hierarchical' => false,
-			    'supports' => array(
-                    'title',
-                    'editor',
-                    'excerpt',
-                    'thumbnail'
-                ),
-                'menu_position' => 5,
-            ],
-        ],
-        */
-    ],
 );
