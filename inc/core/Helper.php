@@ -96,15 +96,14 @@ class Helper
     }
 
     /**
-     * Output icon
+     * Output svg icon
      */
-    public static function icon( string $name, string $alt = "" )
-    {
-        if ( empty( $name ) ) {
-            return;
+    public static function icon( string $filename )
+    {        
+        $icon = file_get_contents( get_template_directory() . "/assets/icons/" . $name . ".svg" );
+
+        if ( ! empty( $icon ) ) {
+            echo $icon;
         }
-?>
-<img src="<?php self::asset( "icons/" . $name . ".svg" ); ?>" alt="<?php echo $alt; ?>">
-<?php
     }
 }
