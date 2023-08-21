@@ -20,3 +20,14 @@ if ( ! function_exists('dd') )
         die;
     }
 }
+
+if ( ! function_exists('dump_log') )
+{
+    function dump_log( $var )
+    {
+        ob_start();
+        var_dump($var);
+        $contents = ob_get_clean();
+        error_log( $contents );
+    }
+}
