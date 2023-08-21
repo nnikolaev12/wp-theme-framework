@@ -9,6 +9,15 @@ const rename = require("gulp-rename");
 const uglify = require("gulp-uglify");
 const imagemin = require("gulp-imagemin");
 const webp = require("gulp-webp");
+const browserSync = require("browser-sync").create();
+
+/**
+ * Add your local development settings below
+ */
+const local_domain = "example.com";
+/**
+ * Stop editing.
+ */
 
 gulp.task("styles-scss", () => {
   const plugins = [autoprefixer(), cssnano()];
@@ -28,6 +37,9 @@ gulp.task("styles-scss", () => {
 
       // Save minified file
       .pipe(gulp.dest("assets/css/"))
+
+      // Stream CSS changes to the opened browsers
+      .pipe(browserSync.stream())
   );
 });
 
@@ -67,6 +79,9 @@ gulp.task("scripts", () => {
 
       // Save minified file
       .pipe(gulp.dest("assets/js/"))
+
+      // Stream JS changes to the opened browsers
+      .pipe(browserSync.stream())
   );
 });
 
@@ -91,14 +106,23 @@ gulp.task("images", () => {
 
 gulp.task("watch", () => {
   // Init BrowserSync server
-  // browserSync.init({
-  //   proxy: "local.webgrowstudio.com",
-  // });
+  browserSync.init({
+    proxy: local_domain,
+  });
 
   // Run clean and styles tasks on SCSS changes
-  gulp.watch(["src/scss/**/*.scss", "src/js/**/*.js"], (done) => {
-    gulp.series(["styles", "scripts"])(done);
-  });
+  gulp.watch(
+    [
+      "src/scss/**/*.scss",
+      "src/js/**/*.js",
+      "template-parts/**/*.php",
+      "templates/**/*.php",
+      "*.php",
+    ],
+    (done) => {
+      gulp.series(["styles", "scripts"])(done);
+    }
+  );
 });
 
 gulp.task("styles", gulp.series(["styles-scss", "styles-tailwind"]));
