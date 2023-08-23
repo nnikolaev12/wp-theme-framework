@@ -100,7 +100,7 @@ class Helper
      */
     public static function icon( string $filename )
     {        
-        $icon = file_get_contents( get_template_directory() . "/assets/icons/" . $name . ".svg" );
+        $icon = file_get_contents( get_template_directory() . "/assets/icons/" . $filename . ".svg" );
 
         if ( ! empty( $icon ) ) {
             echo $icon;
