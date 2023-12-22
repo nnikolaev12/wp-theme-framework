@@ -106,4 +106,16 @@ class Helper
             echo $icon;
         }
     }
+
+    /**
+     * Load component template
+     */
+    public static function component( string $name, array $args = array() )
+    {
+        if ( empty( $name ) ) {
+            return;
+        }
+
+        get_template_part( "/template-parts/components/" . $name, null, $args );
+    }
 }
