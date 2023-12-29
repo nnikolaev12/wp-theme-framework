@@ -20,13 +20,15 @@ This theme is enhanced with various features to speed up development. Here is a 
 
 ## Theme Structure
 
-**/src/** - Includes source files, such as scss, js, and images. All styles, scripts and images should be edited from here.
+**/config/** - Theme configuration files. Includes WordPress specific configurations in config.php, and Tailwind config file.
 
-**/assets/** - Processed source files are added here. Do not edit those files directly or your changes will be overwritten.
+**/src/** - Includes FE source files, such as scss, js, and images. All styles, scripts and images should be edited from [here](#scripts).
 
-**/config/** - Theme configuration files. WordPress specific configurations can be tweaked in config.php.
+**/assets/** - Processed source files are added here. Do not edit those files directly or your changes will be overwritten. Exceptions are icons, fonts, and other static files that do need processing and are used directly.
 
-**/template-parts/** - Small theme building blocks - components, layout parts, Gutenberg blocks, etc.
+**/scripts/** - Helper scripts to automate certain processes in the theme development. More on the available scripts here.
+
+**/template-parts/** - Small theme building blocks - components, layout parts, Gutenberg blocks (ACF), etc.
 
 **/templates/** - WordPress page templates.
 
@@ -96,3 +98,13 @@ Echo an the HTML markup for an image located in the /assets/images/ directory. S
 `\NyxitSoft\Helper::icon( string $filename );`
 
 Echo an HTML markup for an SVG icon located in the /assets/icons/ directory. Specify the required param: filename without the extension.
+
+`\NyxitSoft\Helper::component( string $filename, array $args = [] );`
+
+Render a previously created component from the template-parts/components folder.
+
+## <a name="scripts"></a>Scripts
+
+1. Create the initial structure for a Guttenberg block (ACF standard) by suppling a name of the block. Your newly created block resides in /template-parts/blocks folder.
+
+`php scripts/create-block.php {BLOCK_NAME}`
