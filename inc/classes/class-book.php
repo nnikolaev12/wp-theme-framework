@@ -32,7 +32,7 @@ class NyxitBook
     public function register_post_type()
     {
         $labels = array(
-            'name' => $labels['singular'],
+            'name' => $this->labels['plural'],
             'singular_name' => $this->labels['singular'],
             'add_new' => 'Add ' . $this->labels['singular'],
             'all_items' => 'All ' . $this->labels['plural'],
@@ -96,3 +96,5 @@ class NyxitBook
         );
     }
 }
+
+$nyxit_books = NyxitBook::getInstance();
