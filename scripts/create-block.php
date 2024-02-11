@@ -61,7 +61,7 @@ if ( $blockTemplateFile ) {
  * @var array \$data
  */
 
-\$data = get_fields();
+\$data = ! empty( \$args ) ? \$args : \$block['data'];
 ?>
 <section>
 

@@ -118,4 +118,15 @@ class Helper
 
         get_template_part( "/template-parts/components/" . $name, null, $args );
     }
+
+    /**
+     * Load block template with custom args
+     */
+    public static function block( string $name, array $args = array() ) {
+        if ( empty( $name ) ) {
+            return;
+        }
+
+        get_template_part( "/template-parts/blocks/" . $name . '/' . $name, null, $args );
+    }
 }
