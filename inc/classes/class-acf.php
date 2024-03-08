@@ -13,9 +13,12 @@ class NyxitACF {
     use Singleton;
 
     public function __construct()
-    {
+    {        
+        if ( ! NyxitSoft\Helper::is_plugin_active('advanced-custom-fields-pro/acf.php') ) {
+            return;
+        }
+
         $this->add_options_page();
-        
         add_action('init', [ $this, 'register_blocks' ] );
     }
 
@@ -25,10 +28,12 @@ class NyxitACF {
     protected function add_options_page()
     {
         if ( function_exists('acf_add_options_page') ) {
+            $theme = wp_get_theme();
+
             acf_add_options_page( [
                 'page_title' => 'Theme Options',
                 'menu_title' => 'Theme Options',
-                'slug' => 'deveo_options',
+                'slug' => $theme->get_template() . '_options',
             ] );
         }
     }

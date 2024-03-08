@@ -129,4 +129,14 @@ class Helper
 
         get_template_part( "/template-parts/blocks/" . $name . '/' . $name, null, $args );
     }
+
+    /**
+     * Check if a required plugin is active
+     */
+    public static function is_plugin_active( string $plugin_id )
+    {
+        $active_plugins = apply_filters( 'active_plugins', get_option( 'active_plugins' ) );
+        
+        return in_array( $plugin_id, $active_plugins );
+    }
 }

@@ -31,6 +31,7 @@ class Theme
         add_action( 'init', [ $this, "register_navs" ] );
         add_action( 'widgets_init', [ $this, "register_sidebars" ] );
         $this->clean();
+        $this->regiter_plugin_hooks();
     }
 
     /**
@@ -137,5 +138,69 @@ class Theme
             return $urls;
         }, 10, 2 );
         add_filter( 'xmlrpc_enabled', '__return_false' );
+    }
+
+    /**
+     * Register hooks for common plugins
+     */
+    public function regiter_plugin_hooks()
+    {
+        // ACF Pro
+        if ( ! NyxitSoft\Helper::is_plugin_active('advanced-custom-fields-pro/acf.php') ) {
+            $this->add_options_page();
+            add_action('init', [ $this, 'register_blocks' ] );
+        }
+
+        // All in One WP Migration
+        if ( NyxitSoft\Helper::is_plugin_active('all-in-one-wp-migration/all-in-one-wp-migration.php') ) {
+            add_filter( 'ai1wm_exclude_themes_from_export', [ $this, 'exclude_theme_folder' ] );
+        }
+        
+    }
+
+    /**
+     * Exclude theme folders from exports and backups
+     */
+    public function exclude_dev_folders( $exclude_filters )
+    {
+        $theme = wp_get_theme();
+        $exclude_filters[] = $theme->get_template() . '/node_modules';
+        $exclude_filters[] = $theme->get_template() . '/vendor';
+        
+        return $exclude_filters;
+    }
+
+    /**
+     * Include an theme options page in the main admin menu
+     */
+    protected function add_options_page()
+    {
+        if ( function_exists('acf_add_options_page') ) {
+            $theme = wp_get_theme();
+
+            acf_add_options_page( [
+                'page_title' => 'Theme Options',
+                'menu_title' => 'Theme Options',
+                'slug' => $theme->get_template() . '_options',
+            ] );
+        }
+    }
+
+    /**
+     * Register Gutenberg blocks
+     */
+    public function register_blocks()
+    {
+        $blocks_path = get_stylesheet_directory() . '/template-parts/blocks/';
+
+        // Get all directories inside $blocks_path
+        $dirs = glob($blocks_path . '*', GLOB_ONLYDIR);
+
+        foreach ($dirs as $dir) {
+            // Get the block name by removing the $blocks_path part from $dir
+            $block_name = str_replace($blocks_path, '', $dir);
+    
+            register_block_type($blocks_path . $block_name);
+        }
     }
 }
