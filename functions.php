@@ -9,7 +9,7 @@
 use NyxitSoft\Theme;
 
 try {
-    if ( defined( "NYXIT_ENV" ) && NYXIT_ENV === "local" ) {
+    if ( defined( "WP_ENVIRONMENT_TYPE" ) && WP_ENVIRONMENT_TYPE === "local" ) {
         // autoload composer libs (dev only)
         require_once "vendor/autoload.php";
         require_once "inc/core/Debug.php";

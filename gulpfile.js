@@ -14,7 +14,7 @@ const browserSync = require("browser-sync").create();
 /**
  * Add your local development settings below
  */
-const local_domain = "example.com";
+const local_domain = "theme-framework.local";
 /**
  * Stop editing.
  */
