@@ -61,9 +61,10 @@ if ( $blockTemplateFile ) {
  * @var array \$data
  */
 
-\$data = ! empty( \$args ) ? \$args : \$block['data'];
+\$data = ! empty( \$args ) ? \$args : get_fields();
+\$block_classes = ! empty( \$block['className'] ) ? \$block['className'] : "";
 ?>
-<section>
+<section class=" <?php echo \$block_classes; ?>">
 
 </section>
 EOT;

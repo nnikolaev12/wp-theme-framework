@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "gulp": "gulp",
-    "start": "gulp watch"
+    "start": "gulp watch",
+    "create-block": "php scripts/create-block.php"
   },
   "author": "Nikolay Nikolaev",
   "license": "ISC",
