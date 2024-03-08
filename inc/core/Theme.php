@@ -4,8 +4,6 @@ namespace NyxitSoft;
 
 defined( 'ABSPATH' ) ?: exit;
 
-use NyxitSoft\CustomPosts;
-
 /**
  * Core theme class.
  */
@@ -146,13 +144,13 @@ class Theme
     public function regiter_plugin_hooks()
     {
         // ACF Pro
-        if ( ! NyxitSoft\Helper::is_plugin_active('advanced-custom-fields-pro/acf.php') ) {
+        if ( ! Helper::is_plugin_active('advanced-custom-fields-pro/acf.php') ) {
             $this->add_options_page();
             add_action('init', [ $this, 'register_blocks' ] );
         }
 
         // All in One WP Migration
-        if ( NyxitSoft\Helper::is_plugin_active('all-in-one-wp-migration/all-in-one-wp-migration.php') ) {
+        if ( Helper::is_plugin_active('all-in-one-wp-migration/all-in-one-wp-migration.php') ) {
             add_filter( 'ai1wm_exclude_themes_from_export', [ $this, 'exclude_theme_folder' ] );
         }
         
