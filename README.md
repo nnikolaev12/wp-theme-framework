@@ -28,13 +28,15 @@ This theme is enhanced with various features to speed up development. Here is a 
 
 **/scripts/** - Helper scripts to automate certain processes in the theme development. More on the available scripts here.
 
-**/template-parts/** - Small theme building blocks - components, layout parts, Gutenberg blocks (ACF), etc.
+**/template-parts/** - Small theme building blocks - components, layout parts, Gutenberg blocks (ACF PRO), etc.
 
 **/templates/** - WordPress page templates.
 
 ## Theme Config
 
-TODO
+Theme can be configured from the main configuration file located in the /config/ folder. All the options available are well documented inside the file itself for better referrence.
+
+In addition, the tailwind.config.js file can be find in this folder as well. This file is the main configuration point for Tailwind. More information of the available options can be found in the official documentation: https://tailwindcss.com/docs/theme
 
 ## Gulp.js Automation
 
@@ -101,10 +103,18 @@ Echo an HTML markup for an SVG icon located in the /assets/icons/ directory. Spe
 
 `\NyxitSoft\Helper::component( string $filename, array $args = [] );`
 
-Render a previously created component from the template-parts/components folder.
+Render a component from the template-parts/components folder.
+
+`\NyxitSoft\Helper::block( string $name, array $args = [] );`
+
+Render a block from the template-parts/blocks folder (just like a component).
+
+`\NyxitSoft\Helper::is_plugin_active( string $plugin_id );`
+
+Checks if a plugin is active. Plugin id is a string in the following format: plugin-folder/main-plugin-file.php. Returns boolean.
 
 ## <a name="scripts"></a>Scripts
 
-1. Create the initial structure for a Guttenberg block (ACF standard) by suppling a name of the block. Your newly created block resides in /template-parts/blocks folder.
+1. Create the initial structure for a Guttenberg block (ACF PRO standard) by suppling a name of the block. Your newly created block resides in /template-parts/blocks folder.
 
 `php scripts/create-block.php {BLOCK_NAME}`
