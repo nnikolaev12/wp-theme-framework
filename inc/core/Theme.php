@@ -144,7 +144,7 @@ class Theme
     public function regiter_plugin_hooks()
     {
         // ACF Pro
-        if ( ! Helper::is_plugin_active('advanced-custom-fields-pro/acf.php') ) {
+        if ( Helper::is_plugin_active('advanced-custom-fields-pro/acf.php') ) {
             $this->add_options_page();
             add_action('init', [ $this, 'register_blocks' ] );
         }

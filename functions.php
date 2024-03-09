@@ -24,11 +24,6 @@ try {
      */
 
     /**
-     * ACF handler class
-     */
-    require_once "inc/classes/class-acf.php";
-
-    /**
      * Custom post type: Book
      */
     require_once "inc/classes/class-book.php";
