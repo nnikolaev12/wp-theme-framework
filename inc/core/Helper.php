@@ -96,15 +96,14 @@ class Helper
     }
 
     /**
-     * Output svg icon
+     * Output svg icon from icon sprite
      */
-    public static function icon( string $filename )
-    {        
-        $icon = file_get_contents( get_template_directory() . "/assets/icons/" . $filename . ".svg" );
+    public static function icon( string $name, string $classes = "" )
+    {
+        $icon_url = get_stylesheet_directory_uri() . '/assets/icons-sprite.svg#' . $name;
+        $classes = ! empty( $classes ) ? "class=\"$classes\""  : "";
 
-        if ( ! empty( $icon ) ) {
-            echo $icon;
-        }
+        echo "<svg $classes><use href=\"$icon_url\" /></svg>";
     }
 
     /**
