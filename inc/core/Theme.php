@@ -151,7 +151,7 @@ class Theme
 
         // All in One WP Migration
         if ( Helper::is_plugin_active('all-in-one-wp-migration/all-in-one-wp-migration.php') ) {
-            add_filter( 'ai1wm_exclude_themes_from_export', [ $this, 'exclude_theme_folder' ] );
+            add_filter( 'ai1wm_exclude_themes_from_export', [ $this, 'exclude_dev_folders' ] );
         }
         
     }
@@ -164,6 +164,7 @@ class Theme
         $theme = wp_get_theme();
         $exclude_filters[] = $theme->get_template() . '/node_modules';
         $exclude_filters[] = $theme->get_template() . '/vendor';
+        $exclude_filters[] = $theme->get_template() . '/.git';
         
         return $exclude_filters;
     }
