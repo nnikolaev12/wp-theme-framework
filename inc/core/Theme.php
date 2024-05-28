@@ -26,6 +26,7 @@ class Theme
         add_action( 'after_setup_theme', [ $this, "support" ] );
         add_action( 'wp_enqueue_scripts', [ $this, "include_stylesheets" ] );
         add_action( 'wp_enqueue_scripts', [ $this, "include_scripts" ] );
+        add_action( 'enqueue_block_editor_assets', [ $this, "include_editor_styles" ]);
         add_action( 'init', [ $this, "register_navs" ] );
         add_action( 'widgets_init', [ $this, "register_sidebars" ] );
         $this->clean();
@@ -101,6 +102,15 @@ class Theme
                 wp_enqueue_script($handle, $src, array(), null, $in_footer);
             }
         }
+    }
+
+    /**
+     * Include stylesheets in the editor to style the content
+     */
+    public function include_editor_styles()
+    {
+        wp_enqueue_style('tailwind-editor-styles', get_template_directory_uri() . '/assets/css/core.min.css', array(), '1.0', 'all');
+        wp_enqueue_style('custom-editor-styles', get_template_directory_uri() . '/assets/css/style.min.css', array(), '1.0', 'all');
     }
 
     /**
