@@ -64,7 +64,7 @@ if ( $blockTemplateFile ) {
 \$data = ! empty( \$args ) ? \$args : get_fields();
 \$block_classes = ! empty( \$block['className'] ) ? \$block['className'] : "";
 ?>
-<section class=" <?php echo \$block_classes; ?>">
+<section class="$blockName <?php echo \$block_classes; ?>">
 
 </section>
 EOT;

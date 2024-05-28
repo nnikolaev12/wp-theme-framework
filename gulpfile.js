@@ -168,5 +168,11 @@ gulp.task("styles", gulp.series(["styles-scss", "styles-tailwind"]));
 
 gulp.task(
   "default",
-  gulp.series(["styles-scss", "styles-tailwind", "scripts", "images"])
+  gulp.series([
+    "styles-scss",
+    "styles-tailwind",
+    "scripts",
+    "images",
+    "svg-sprite",
+  ])
 );
