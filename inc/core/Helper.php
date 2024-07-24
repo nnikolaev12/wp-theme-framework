@@ -71,28 +71,30 @@ class Helper
      * 
      * Outputs an image through the <picture> tag with webp format as main source
      * and older format as a fallback for compatibility with older browsers.
+     * 
+     * @param array $img
+     * @param string $img['name'] The name of the image file
+     * @param string $img['alt'] The alt text of the image
+     * @param int $img['width'] The width of the image
+     * @param int $img['height'] The height of the image
+     * @param string $img['class'] The classes of the image
      */
     public static function image( array $img )
     {
-        $src = isset( $img['src'] ) ? 'images/' . $img['src'] : '';
-        $format = isset( $img['format'] ) ? $img['format'] : '';
-
-        // stop execution if no source or format 
-        if ( empty( $src ) || empty( $format ) ) {
+        // stop execution if no source
+        if ( empty( $img['name'] ) ) {
             return;
         }
 
-        $alt = isset( $img['alt'] ) ? $img['alt'] : '';
-        $dimentions = isset( $img['width'] ) && isset( $img['height'] ) ? "width=\"" . $img['width'] . "\" height=\"" . $img['height'] . "\"" : "";
-        $class = isset( $img['class'] ) ? "class=\"" . $img['class'] . "\" " : "";
-?>
-<picture>
-    <source srcset="<?php self::asset( $src . ".webp" ); ?>" type="image/webp">
-    <source srcset="<?php self::asset( $src . "." . $format ); ?>" type="image/<?php echo $format; ?>">
-    <img <?php echo $class; ?><?php echo $dimentions; ?> src="<?php self::asset( $src . "." . $format ); ?>"
-        alt="<?php echo $alt; ?>" loading="lazy">
-</picture>
-<?php
+        $src = "src=\"" . self::asset( 'images/' . $img['name'] . ".webp", false ) . "\" ";
+        $alt = isset( $img['alt'] ) ? "alt=\"" . $img['alt'] . "\" " : "alt=\"" . ucwords(str_replace('-', ' ', $img['name'])) . "\" ";
+        $width = isset( $img['width'] ) ? "width=\"" . $img['width'] . "\" " : '';
+        $height = isset( $img['height'] ) ? "height=\"" . $img['height'] . "\" " : '';
+        $classes = isset( $img['class'] ) ? "class=\"" . $img['class'] . "\" " : '';
+
+        $image = "<img " . $classes . $width . $height . $src .$alt . "loading=\"lazy\" />";
+
+        echo $image;
     }
 
     /**

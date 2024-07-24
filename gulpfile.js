@@ -93,9 +93,6 @@ gulp.task("images", () => {
       // Minify image
       .pipe(imagemin())
 
-      // Save minified source image
-      .pipe(gulp.dest("assets/images/"))
-
       // Create webp image
       .pipe(webp())
 
