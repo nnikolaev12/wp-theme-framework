@@ -50,7 +50,7 @@ Builds JS scripts in the /assets/ directory.
 
 `gulp images`
 
-Gets all images from the /src/ directory and optimizes them. Adds the optimized version and a webp version of the image in the /assets/ directory.
+Gets all images from the /src/images directory and optimizes them. Adds a webp version of the image in the /assets/images directory.
 
 `gulp watch`
 
@@ -86,8 +86,7 @@ Get or echo an asset from the assets directory. Specify a path to the file locat
 
 ```
 \NyxitSoft\Helper::image( array(
-    'src' => 'path_to_the_image_file',
-    'format' => 'png',
+    'name' => 'image_file_name',
     'alt' => 'Alt text',
     'width' => 200,
     'height' => 200,
@@ -95,11 +94,11 @@ Get or echo an asset from the assets directory. Specify a path to the file locat
 ) );
 ```
 
-Echo an the HTML markup for an image located in the /assets/images/ directory. Specify the required params: path or filename as src without the file extension and the format (png, jpg). Optionally specify alternative text, width, height, and class for the image. The image is rendered as webp with the source as a fallback.
+Echo an the HTML markup for an image located in the /assets/images/ directory. Specify the required params: path or filename as name without the file extension. Optionally specify alternative text, width, height, and class for the image. The image is rendered as webp. Images created with `gulp images` are automatically added in the /assets/images/ directory as webp.
 
-`\NyxitSoft\Helper::icon( string $filename );`
+`\NyxitSoft\Helper::icon( string $filename, bool $is_img = false );`
 
-Echo an HTML markup for an SVG icon located in the /assets/icons/ directory. Specify the required param: filename without the extension.
+Echo an HTML markup for an inline SVG icon located in the /assets/icons/ directory. Specify the required param: filename without the extension. Optionally specify if the svg should be rendered with an img tag (default is the inline svg).
 
 `\NyxitSoft\Helper::component( string $filename, array $args = [] );`
 
