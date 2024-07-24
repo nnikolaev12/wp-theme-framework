@@ -30,6 +30,27 @@ class Helper
     }
 
     /**
+     * Escapes a string for output as HTML. Allows some HTML tags.
+     */
+    public static function esc_html( string $string, bool $echo = true )
+    {
+        $allowed_html = array(
+            'br' => array(),
+            'em' => array(),
+            'strong' => array(),
+            'b' => array(),
+        );
+
+        $escaped = wp_kses( $string, $allowed_html );
+
+        if ( ! $echo ) {
+            return $escaped;
+        }
+
+        echo $escaped;
+    }
+
+    /**
      * Output assets from assets dir
      * 
      * Outputs assets (images, css files, js files, etc.) relative
