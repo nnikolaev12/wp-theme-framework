@@ -12,6 +12,7 @@ class NyxitBook
 {
     use Singleton;
 
+    private $id = 'book';
     public array $labels = array(
         'singular' => 'Book',
         'plural' => 'Books',
@@ -47,7 +48,7 @@ class NyxitBook
         );
 
         register_post_type(
-            'book',
+           $this->$id,
             array(
                 'labels' => $labels,
                 'public' => true,
@@ -81,7 +82,7 @@ class NyxitBook
         register_taxonomy(
             'book_category',
             array(
-                'book',
+                $this->id,
             ),
             array(
                 'label' => 'Book Categories',
@@ -94,6 +95,42 @@ class NyxitBook
                 )
             )
         );
+    }
+
+    /**
+     * Get a number of posts
+     */
+    public static function get_posts( int $count = -1 ) : array
+    {
+        $query = new WP_Query( array(
+            'post_type' => 'book',
+            'posts_per_page' => $count,
+        ) );
+                
+        return self::fetch_data( $query );
+    }
+
+    /**
+     * Fetch data from WP Query
+     * 
+     * @param WP_Query
+     */
+    protected static function fetch_data( object $query ) : array
+    {
+        $data = array();
+
+        while ( $query->have_posts() ) {
+            $query->the_post();
+
+            $data[] = array(
+                'name' => get_the_title(),
+                // add more data here
+            );
+        }
+        
+        wp_reset_postdata();
+        
+        return $data;
     }
 }
 
