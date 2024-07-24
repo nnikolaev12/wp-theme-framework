@@ -20,8 +20,6 @@
     "gulp-postcss": "^9.0.1",
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^5.1.0",
-    "gulp-svg-sprite": "^2.0.3",
-    "gulp-svgo": "^2.2.1",
     "gulp-uglify": "^3.0.2",
     "gulp-webp": "^4.0.1",
     "postcss": "^8.4.21",

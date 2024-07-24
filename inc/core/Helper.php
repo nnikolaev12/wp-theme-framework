@@ -96,14 +96,20 @@ class Helper
     }
 
     /**
-     * Output svg icon from icon sprite
+     * Output SVG icon inline or as an image
      */
-    public static function icon( string $name, string $classes = "" )
+    public static function icon( string $name, bool $is_img = false )
     {
-        $icon_url = get_stylesheet_directory_uri() . '/assets/icons-sprite.svg#' . $name;
-        $classes = ! empty( $classes ) ? "class=\"$classes\""  : "";
-
-        echo "<svg $classes><use href=\"$icon_url\" /></svg>";
+        if ( $is_img ) {
+            $alt_text = ucwords(str_replace('-', ' ', $name)) . " icon";
+            $icon = "<img src=\"" . self::asset( "icons/" . $name . ".svg", false ) . "\" alt=\"" . $alt_text . "\">";
+        } else {
+            $icon = file_get_contents( get_template_directory() . "/assets/icons/" . $name . ".svg" );
+        }
+        
+        if ( ! empty( $icon ) ) {
+            echo $icon;
+        }
     }
 
     /**

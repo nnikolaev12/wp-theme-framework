@@ -48,7 +48,7 @@ class NyxitBook
         );
 
         register_post_type(
-           $this->$id,
+           $this->id,
             array(
                 'labels' => $labels,
                 'public' => true,

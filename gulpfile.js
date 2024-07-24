@@ -10,8 +10,6 @@ const uglify = require("gulp-uglify");
 const imagemin = require("gulp-imagemin");
 const webp = require("gulp-webp");
 const browserSync = require("browser-sync").create();
-const svgo = require("gulp-svgo");
-const svgsprite = require("gulp-svg-sprite");
 
 /**
  * Add your local development settings below
@@ -106,43 +104,6 @@ gulp.task("images", () => {
   );
 });
 
-gulp.task("svg-sprite", () => {
-  var config = {
-    svg: {
-      transform: [
-        /**
-         * Remove fill and stroke attributes so it can be styled with CSS
-         * @param svg
-         */
-        function (svg) {
-          svg = svg.replace(/fill=".*?"/g, "");
-          svg = svg.replace(/stroke=".*?"/g, "");
-
-          return svg;
-        },
-      ],
-    },
-    mode: {
-      shape: {
-        dimension: {
-          maxWidth: 18,
-          maxHeight: 18,
-        },
-      },
-      symbol: {
-        dest: ".",
-        sprite: "icons-sprite.svg",
-      },
-    },
-  };
-
-  return gulp
-    .src("src/svg/**/*.svg")
-    .pipe(svgo())
-    .pipe(svgsprite(config))
-    .pipe(gulp.dest("assets"));
-});
-
 gulp.task("watch", () => {
   // Init BrowserSync server
   browserSync.init({
@@ -168,11 +129,5 @@ gulp.task("styles", gulp.series(["styles-scss", "styles-tailwind"]));
 
 gulp.task(
   "default",
-  gulp.series([
-    "styles-scss",
-    "styles-tailwind",
-    "scripts",
-    "images",
-    "svg-sprite",
-  ])
+  gulp.series(["styles-scss", "styles-tailwind", "scripts", "images"])
 );
