@@ -119,17 +119,27 @@ class Helper
     }
 
     /**
-     * Output SVG icon inline or as an image
+     * Output SVG icon with img tag
      */
-    public static function icon( string $name, bool $is_img = false )
+    public static function icon_img( string $name, array $args = array() )
     {
-        if ( $is_img ) {
-            $alt_text = ucwords(str_replace('-', ' ', $name)) . " icon";
-            $icon = "<img src=\"" . self::asset( "icons/" . $name . ".svg", false ) . "\" alt=\"" . $alt_text . "\">";
-        } else {
-            $icon = file_get_contents( get_template_directory() . "/assets/icons/" . $name . ".svg" );
-        }
+        $width = ! empty( $args['width'] ) ? "width=\"" . $args['width'] . "\" " : '';
+        $height = ! empty( $args['height'] ) ? "height=\"" . $args['height'] . "\" " : '';
+        $alt = "alt=\"" .ucwords(str_replace('-', ' ', $name)) . " icon\"";
+        $icon = "<img src=\"" . self::asset( "icons/" . $name . ".svg", false ) . "\" " . $width . $height . $alt . " />";
         
+        if ( ! empty( $icon ) ) {
+            echo $icon;
+        }
+    }
+
+    /**
+     * Output SVG icon inline
+     */
+    public static function icon( string $name, array $args = array() )
+    {
+        $icon = file_get_contents( get_template_directory() . "/assets/icons/" . $name . ".svg" );
+
         if ( ! empty( $icon ) ) {
             echo $icon;
         }
