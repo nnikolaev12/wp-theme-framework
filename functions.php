@@ -1,12 +1,12 @@
 <?php
 
 /**
- * Start of Nyxit Soft Theme
+ * Start of Nyxit Theme
  * 
  * @author Nikolay Nikolaev <me@nikolaynikolaev.com>
  */
 
-use NyxitSoft\Theme;
+use Nyxit\Theme;
 
 try {
     if ( defined( "WP_ENVIRONMENT_TYPE" ) && WP_ENVIRONMENT_TYPE === "local" ) {

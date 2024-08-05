@@ -10,7 +10,7 @@ $icon_name = ! empty( $args['icon'] ) ? $args['icon'] : false;
         <?php esc_html_e( $text ); ?>
         <?php if ( $icon_name ) : ?>
         <span class="ml-2">
-            <?php \NyxitSoft\Helper::icon( $icon_name ); ?>
+            <?php \Nyxit\Helper::icon( $icon_name ); ?>
         </span>
         <?php endif; ?>
     </button>

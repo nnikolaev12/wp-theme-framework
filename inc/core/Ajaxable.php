@@ -1,6 +1,6 @@
 <?php
 
-namespace NyxitSoft;
+namespace Nyxit;
 
 trait Ajaxable
 {

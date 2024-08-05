@@ -2,7 +2,7 @@
 
 defined( 'ABSPATH' ) ?: exit;
 
-use NyxitSoft\Singleton;
+use Nyxit\Singleton;
 
 /**
  * Class to interact with CPT Book.
