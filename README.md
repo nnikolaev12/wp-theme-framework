@@ -76,16 +76,16 @@ Dumps a variable in the debug.log. Make sure that WordPress debugging is enabled
 
 ## Helper Functions
 
-`\NyxitSoft\Helper::url( string $path = "/", bool $echo = false );`
+`Nyxit\Helper::url( string $path = "/", bool $echo = false );`
 
 Get or echo the URL relative to the root domain. Leave empty to get the root domain.
 
-`\NyxitSoft\Helper::asset( string $path, bool $echo = true );`
+`Nyxit\Helper::asset( string $path, bool $echo = true );`
 
 Get or echo an asset from the assets directory. Specify a path to the file located in the /assets/ directory.
 
 ```
-\NyxitSoft\Helper::image( array(
+Nyxit\Helper::image( array(
     'name' => 'image_file_name',
     'alt' => 'Alt text',
     'width' => 200,
@@ -96,24 +96,36 @@ Get or echo an asset from the assets directory. Specify a path to the file locat
 
 Echo an the HTML markup for an image located in the /assets/images/ directory. Specify the required params: path or filename as name without the file extension. Optionally specify alternative text, width, height, and class for the image. The image is rendered as webp. Images created with `gulp images` are automatically added in the /assets/images/ directory as webp.
 
-`\NyxitSoft\Helper::icon( string $filename, bool $is_img = false );`
+`Nyxit\Helper::icon( string $filename );`
 
-Echo an HTML markup for an inline SVG icon located in the /assets/icons/ directory. Specify the required param: filename without the extension. Optionally specify if the svg should be rendered with an img tag (default is the inline svg).
+Echo an HTML markup for an inline SVG icon located in the /assets/icons/ directory. Specify the required param: filename without the extension.
 
-`\NyxitSoft\Helper::component( string $filename, array $args = [] );`
+`Nyxit\Helper::icon_img( string $filename );`
+
+Echo an HTML markup for an SVG icon with the img tag located in the /assets/icons/ directory. Supply the following optional arguments as key => value for fine-tuning: width, height.
+
+`Nyxit\Helper::component( string $filename, array $args = [] );`
 
 Render a component from the template-parts/components folder.
 
-`\NyxitSoft\Helper::block( string $name, array $args = [] );`
+`Nyxit\Helper::block( string $name, array $args = [] );`
 
 Render a block from the template-parts/blocks folder (just like a component).
 
-`\NyxitSoft\Helper::is_plugin_active( string $plugin_id );`
+`Nyxit\Helper::is_plugin_active( string $plugin_id );`
 
 Checks if a plugin is active. Plugin id is a string in the following format: plugin-folder/main-plugin-file.php. Returns boolean.
 
 ## <a name="scripts"></a>Scripts
 
-1. Create the initial structure for a Guttenberg block (ACF PRO standard) by suppling a name of the block. Your newly created block resides in /template-parts/blocks folder.
+1. Create the initial structure for a Guttenberg block (ACF PRO standard) by suppling a name of the block. Your newly created block resides in /template-parts/blocks folder. Additionally, you can specify some of the fields schema by supplying it via the `--fields` flag. All fields should be comma-separated and specified in the following manner: {NAME}:{TYPE}. See the examples below:
 
 `php scripts/create-block.php {BLOCK_NAME}`
+
+OR
+
+`npm run create-block {BLOCK_NAME}`
+
+With fields:
+
+`npm run create-block {BLOCK_NAME} --fields title:text,description:textarea,profile_image:image`
