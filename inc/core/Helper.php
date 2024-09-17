@@ -177,4 +177,34 @@ class Helper
         
         return in_array( $plugin_id, $active_plugins );
     }
+
+    public static function esc_content( string $content ) : string
+    {
+        return wp_kses( $content, array(
+            'a' => array(
+                'href' => array(),
+                'target' => array(),
+                'rel' => array(),
+                'class' => array(),
+                'style' => array(),
+            ),
+            'br' => array(),
+            'em' => array(),
+            'strong' => array(),
+            'p' => array(),
+            'span' => array(
+                'style' => array(),
+                'class' => array(),
+            ),
+            'ul' => array(
+                'style' => array(),
+            ),
+            'ol' => array(),
+            'li' => array(),
+            'div' => array(
+                'style' => array(),
+                'class' => array(),
+            ),
+        ) );
+    }
 }
